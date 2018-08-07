@@ -26,6 +26,30 @@ class Profile extends Component {
 		}
 	}
 
+	get records() {
+		return this.props.user.games.map((game, index) => {
+			return(
+				<GameRecord
+					key={index}
+					index={index}
+				>
+					<Column>
+						{(game.winner) ? 'Won!' : 'Lost'}
+					</Column>
+					<Column>
+						"Robot"
+					</Column>
+					<Column>
+						"No"
+					</Column>
+					<Column>
+						{game.createdAt}
+					</Column>
+				</GameRecord>
+			)
+		})
+	}
+
 	render() {
 		let {email} = this.props.user
 		return (
@@ -50,8 +74,8 @@ class Profile extends Component {
 						<Column>
 							Date
 						</Column>
-
 					</ColumnLabels>
+					{this.records}
 				</GameList>
 			</Container>
 		)
